@@ -121,4 +121,5 @@ THE SOFTWARE.
 
 
 
-[0]: http://github.com/nathanmarz/storm
+[0]: https://github.com/nathanmarz/storm
+[1]: https://github.com/epokmedia/storm-local-multilang
