@@ -1,0 +1,23 @@
+{
+  "author": "EPOKMEDIA <m.schwartz@epokmedia.fr>",
+  "name": "storm-node-multilang",
+  "description": "Multilang implementation in node.js for the Storm distributed realtime computation system",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/epokmedia/storm-node-multilang.git"
+  },
+  "main": "index",
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": "~0.6.11"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha":">=0.14.0",
+    "should":">=0.6.0"
+    },
+  "optionalDependencies": {}
+}
