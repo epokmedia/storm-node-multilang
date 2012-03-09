@@ -4,6 +4,84 @@ An implementation of the multi-language support for [Storm][0] in **node.js**
 
 ## Example Usage
 
+### Spout creation
+
+```javascript
+	
+	var Spout = require('storm-node-multilang').Spout;
+
+	//The Spout constructor takes a definition function,
+	//an input stream and an output stream
+    var sentenceEmitter = new Spout(function(events) {
+		var collector = null;
+		var seqId = 1;
+
+		//You can listen to the spout "open", "ack" and "fail" events to
+		events.on('open', function(c) {
+			collector = c;
+		});
+
+		events.on('ack', function(messageId) {
+			console.log(messageId + ' acked');
+		});
+
+		events.on('fail', function(messageId) {
+			console.log(messageId + ' failed');
+		});
+
+		//The definition function must return a function used as
+		//the nextTuple function.
+		return function(cb) {
+			
+			collector.emit("hello", seqId++);
+			cb();
+
+		}
+
+	}, process.stdin, process.stdout);
+    
+``` 
+
+
+### Bolt creation
+
+```javascript
+	
+	var Bolt = require('storm-node-multilang').Bolt;
+
+	//The Bolt constructor takes a definition function,
+	//an input stream and an output stream
+    var joinBolt = new Bolt(function(events) {
+		var collector = null;
+
+		//You can listen to the bolt "prepare" event to
+		//fetch a reference to the OutputCollector instance
+		events.on('prepare', function(c) {
+			collector = c;
+		});
+
+		//The definition function must return a function used as
+		//the execute function.
+		return function(tuple, cb) {
+		
+			collector.emit(tuple.values.join(', '));
+			collector.ack(tuple);
+			cb();
+		}
+
+	}, process.stdin, process.stdout);
+    
+``` 
+
+## How to test my node.js spouts and bolts with Storm ?
+
+To test your node.js spouts and bolts you will need to setup a storm cluster 
+which is very painful if you don't want to run VM and a Zookeeper cluster.  
+
+Storm provides a `LocalCluster` class to test a topology locally.  
+
+Maybe the easiest way to test your topologies is to use our [storm-local-multilang][1] project.
+
 
 ## Installation
 
