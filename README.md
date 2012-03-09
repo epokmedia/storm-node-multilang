@@ -87,10 +87,6 @@ Maybe the easiest way to test your topologies is to use our [storm-local-multila
 
     $ npm install storm-node-multilang
 
-## Example usage
-
-Coming soon
-
 ## Running Tests
 
 To run the test suite first invoke the following command within the repo, installing the development dependencies:
