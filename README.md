@@ -2,8 +2,6 @@
 
 An implementation of the multi-language support for [Storm][0] in **node.js**
 
-## Example Usage
-
 
 ## Installation
 
