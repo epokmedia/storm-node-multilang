@@ -33,12 +33,16 @@ An implementation of the multi-language support for [Storm][0] in **node.js**
 		//the nextTuple function.
 		return function(cb) {
 			
-			collector.emit("hello", seqId++);
+			collector.emit(["hello"], seqId++);
 			cb();
 
 		}
 
 	}, process.stdin, process.stdout);
+
+	
+	process.stdin.setEncoding('utf8');
+	process.stdin.resume();
     
 ``` 
 
@@ -70,6 +74,9 @@ An implementation of the multi-language support for [Storm][0] in **node.js**
 		}
 
 	}, process.stdin, process.stdout);
+
+	process.stdin.setEncoding('utf8');
+	process.stdin.resume();
     
 ``` 
 
